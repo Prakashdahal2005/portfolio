@@ -1099,54 +1099,98 @@
             max-width: 500px;
         }
 
-        .email-copy-bar {
+        /* Contact Form */
+        .contact-form {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0 0;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1 1 100%;
+        }
+
+        .form-field-half {
+            flex: 1 1 calc(50% - 0.5rem);
+            min-width: 0;
+        }
+
+        .form-field label {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-muted);
+        }
+
+        .form-field input,
+        .form-field textarea {
+            font-family: var(--font-sans);
+            font-size: 0.92rem;
+            color: var(--ink);
             background: var(--bg-subtle);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 8px 12px 8px 16px;
-            max-width: 480px;
-            justify-content: space-between;
-            gap: 12px;
+            border-radius: 8px;
+            padding: 10px 14px;
+            width: 100%;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .email-address {
-            font-family: var(--font-mono);
-            font-size: 0.88rem;
-            color: var(--ink);
-            font-weight: 500;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+        .form-field input::placeholder,
+        .form-field textarea::placeholder {
+            color: var(--ink-muted);
         }
 
-        .copy-action-btn {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            color: var(--ink);
-            font-family: var(--font-sans);
-            font-size: 0.82rem;
-            font-weight: 600;
-            padding: 7px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        .form-field input:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-submit-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 4px;
+            font-family: var(--font-sans);
+            font-size: 0.92rem;
+            font-weight: 700;
+            padding: 12px 26px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
+            box-shadow: 0 4px 14px -2px rgba(217, 75, 48, 0.35);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .copy-action-btn:hover {
-            border-color: var(--border-hover);
-            background: var(--ink);
-            color: var(--bg);
+        .form-submit-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2;
         }
 
-        .copy-action-btn svg {
-            width: 14px;
-            height: 14px;
+        .form-submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px -4px rgba(217, 75, 48, 0.45);
+            filter: brightness(1.05);
+        }
+
+        .form-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .contact-links-grid {
@@ -1356,12 +1400,11 @@
             .edu-right {
                 text-align: left;
             }
-            .email-copy-bar {
-                flex-direction: column;
-                align-items: stretch;
+            .form-field-half {
+                flex: 1 1 100%;
             }
-            .copy-action-btn {
-                justify-content: center;
+            .form-submit-btn {
+                width: 100%;
             }
         }
     </style>
@@ -1393,6 +1436,12 @@
                 </ul>
 
                 <div class="nav-actions">
+                    <a href="resume.pdf" download class="theme-btn nav-cv-btn" aria-label="Download CV">
+                        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span>CV</span>
+                    </a>
                     <button type="button" class="theme-btn" id="themeToggleBtn" aria-label="Toggle dark/light theme">
                         <svg class="theme-icon" id="themeIconSun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -1439,11 +1488,11 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                             </svg>
                         </a>
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=prakashdahal2005@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                        <a href="resume.pdf" download class="btn btn-primary">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
-                            <span>Send Email</span>
+                            <span>Download CV</span>
                         </a>
                         <a href="https://github.com/Prakashdahal2005" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="GitHub Profile">
                             <svg viewBox="0 0 24 24" fill="currentColor">
@@ -1783,36 +1832,35 @@
                             </p>
                         </div>
 
-                        <div class="email-copy-bar">
-                            <span class="email-address">prakashdahal2005@gmail.com</span>
-                            <button type="button" class="copy-action-btn" id="copyEmailBtn" data-email="prakashdahal2005@gmail.com" aria-label="Copy email address">
+                        <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/prakashdahal2005@gmail.com" method="POST">
+                            <input type="hidden" name="_subject" value="New portfolio message">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none;">
+                            <div class="form-field form-field-half">
+                                <label for="contactName">Name</label>
+                                <input type="text" id="contactName" name="name" placeholder="Your name" required>
+                            </div>
+                            <div class="form-field form-field-half">
+                                <label for="contactEmail">Email</label>
+                                <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="contactMessage">Message</label>
+                                <textarea id="contactMessage" name="message" rows="4" placeholder="Tell me about your project or opportunity..." required></textarea>
+                            </div>
+                            <button type="submit" class="form-submit-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                 </svg>
-                                <span id="copyBtnLabel">Copy</span>
+                                <span>Send Message</span>
                             </button>
-                        </div>
+                        </form>
                     </div>
 
                     <!-- External Profiles -->
                     <div class="contact-links-grid">
                         
-                        <!-- Mail Client Launcher -->
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=prakashdahal2005@gmail.com" target="_blank" rel="noopener noreferrer" class="social-link-card">
-                            <div class="social-card-left">
-                                <div class="social-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="social-title">Send Email</div>
-                                    <div class="social-handle">Launch Gmail Composer</div>
-                                </div>
-                            </div>
-                            <div class="social-arrow">↗</div>
-                        </a>
-
                         <!-- GitHub -->
                         <a href="https://github.com/Prakashdahal2005" target="_blank" rel="noopener noreferrer" class="social-link-card">
                             <div class="social-card-left">
@@ -1915,33 +1963,65 @@
                 });
             }
 
-            // 2. Email Copy Interaction
-            const copyBtn = document.getElementById('copyEmailBtn');
-            const copyBtnLabel = document.getElementById('copyBtnLabel');
+            // 2. Contact Form Submit (FormSubmit.co — AJAX with native POST fallback)
             const toast = document.getElementById('toast');
             const toastMessage = document.getElementById('toastMessage');
+            const contactForm = document.getElementById('contactForm');
+            const nativeFormEndpoint = 'https://formsubmit.co/prakashdahal2005@gmail.com';
             let toastTimer;
 
-            if (copyBtn && toast) {
-                copyBtn.addEventListener('click', function() {
-                    const email = copyBtn.getAttribute('data-email');
-                    navigator.clipboard.writeText(email).then(function() {
-                        if (copyBtnLabel) copyBtnLabel.textContent = 'Copied!';
-                        if (toastMessage) toastMessage.textContent = 'Email copied to clipboard!';
-                        toast.classList.add('show');
-                        
-                        setTimeout(function() {
-                            if (copyBtnLabel) copyBtnLabel.textContent = 'Copy';
-                        }, 2000);
+            function showToast(message, duration) {
+                if (toastMessage) toastMessage.textContent = message;
+                if (toast) toast.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(function() {
+                    if (toast) toast.classList.remove('show');
+                }, duration || 2500);
+            }
 
-                        clearTimeout(toastTimer);
-                        toastTimer = setTimeout(function() {
-                            toast.classList.remove('show');
-                        }, 2500);
-                    }).catch(function() {
-                        window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email), '_blank');
+            if (contactForm) {
+                const handleSubmit = function(e) {
+                    e.preventDefault();
+                    const submitBtn = contactForm.querySelector('.form-submit-btn');
+                    const originalLabel = submitBtn ? submitBtn.querySelector('span').textContent : '';
+
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.querySelector('span').textContent = 'Sending...';
+                    }
+
+                    const payload = {};
+                    new FormData(contactForm).forEach(function(value, key) {
+                        payload[key] = value;
                     });
-                });
+
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    }).then(function(res) {
+                        if (res.ok) {
+                            contactForm.reset();
+                            showToast('Message sent successfully!', 3500);
+                        } else {
+                            throw new Error('FormSubmit returned an error');
+                        }
+                    }).catch(function() {
+                        contactForm.removeEventListener('submit', handleSubmit);
+                        contactForm.action = nativeFormEndpoint;
+                        contactForm.submit();
+                    }).finally(function() {
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.querySelector('span').textContent = originalLabel || 'Send Message';
+                        }
+                    });
+                };
+
+                contactForm.addEventListener('submit', handleSubmit);
             }
 
             // 3. Active Nav Link Scroll Spy
