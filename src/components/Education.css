@@ -1,0 +1,90 @@
+/* -------------------------------------------------------------
+   Education Section: High-Finish Academic Card
+   ------------------------------------------------------------- */
+.edu-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.25rem;
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  transition: all 0.25s ease;
+}
+
+.edu-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.edu-main {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.edu-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.edu-icon-wrap svg {
+  width: 26px;
+  height: 26px;
+}
+
+.edu-degree {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.edu-inst {
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+}
+
+.edu-right {
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.edu-years {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+}
+
+.edu-standing {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .edu-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .edu-right {
+    text-align: left;
+  }
+}
